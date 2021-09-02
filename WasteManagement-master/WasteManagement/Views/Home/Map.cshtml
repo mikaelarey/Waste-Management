@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "Map";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    img{
+        width:300px;
+         height:200px;
+    }
+</style>
+
+<div class="row g-2">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                Tourist Distination
+            </div>
+            <div class="card-body">
+                <div class="row row-cols-lg-auto g-5">
+
+                    <div class="col">
+                        <h6><b>Burnham Park</b></h6>
+                        <img class="img-thumbnail" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9XMw_iGrf5re3bbvk3GXtfrpmc2qRWa8IDUZQfbyx84mJDZJ5LZjNOAAsn8AB6ZhSGuQVGFV0XL-QQdVYG7XQLQ" alt="Alternate Text" />
+                    </div>
+
+                    <div class="col">
+                        <h6><b>Mines View Observation Deck</b></h6>
+                        <img class="img-thumbnail" src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTsO8FfIencOhTQNJ9mSI7tnL-VZtVvRoaV9rcwuiD0izury9kdLyNeoRsXlMgnzGSFbL8cGovbUUMi9suUE4pBcA" alt="Alternate Text" />
+                    </div>
+
+                    <div class="col">
+                        <h6><b>Our Lady of Atonement Cathedral</b></h6>
+                        <img class="img-thumbnail" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYlUcgPBb7HHAqNGzHqj3uzdgMftHTFlTAHGwE1FvDBNECVNch2wvlif_0QPolindAev529xAcCMhwjDfMMLlK6g" alt="Alternate Text" />
+                    </div>
+
+                    <div class="col">
+                        <h6><b>Lion’s Head</b></h6>
+                        <img class="img-thumbnail" src="https://lh5.googleusercontent.com/p/AF1QipO92H8ujUug-kPW7D232UdtZMdCAAUK0gVmls_v=w464-h260-n-k-no" alt="Alternate Text" />
+                    </div>
+
+                    <div class="col">
+                        <h6><b>Heritage Hill and Nature Park Garden, Baguio</b></h6>
+                        <img class="img-thumbnail" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt4_lSieMGkusPBUCnsGgVAneyehgcC1fDHRgQyFbBTfIWEhUZIf_wrE3lxgGUKHOKvZnMCRcAs75pqayNbFcf0A" alt="Alternate Text" />
+                    </div>
+
+                    <div class="col">
+                        <h6><b>Baguio Botanical Garden</b></h6>
+                        <img class="img-thumbnail" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSbid2G5FUl-fYLpq5KY50G1rg7Hw3Lk6xupilMNlzAkx8XnV3mkI1255gIR_YP5eoHnlbgrgY58ArPxxZQf_nsrA" alt="Alternate Text" />
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div id="googleMap" style="width:100%;height:90vh;" class="mb-5"></div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+<script src="http://maps.google.com/maps/api/js?sensor=false"
+        type="text/javascript"></script>
+
+<script type="text/javascript">
+    var locations = [
+      ['Burnham Park', 16.41162752515713, 120.59346284572591],
+      ['Baguio Night Market', 16.413763697738652, 120.59495675338933],
+      ['Burnham Lake', 16.41089575401553, 120.59462859336881],
+      ['Baguio Orchidarium', 16.41164287282726, 120.59262253105088],
+      ['Baguio Rose Garden', 16.412494037475682, 120.59340596888788],
+      ['Panagbenga Park', 16.405170259268953, 120.60694976198737],
+      ['Heritage Hill and Nature Park Garden, Bagiuo', 16.404223117964033, 120.5887527510443],
+      ['Butterfly Santuary', 16.403028951925016, 120.61673490816521],
+    ];
+
+    var map = new google.maps.Map(document.getElementById('googleMap'), {
+      zoom: 15,
+      center: new google.maps.LatLng(16.41162752515713, 120.59346284572591),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+</script>
+
+
+@*<script>
+        function myMap() {
+            const uluru = { lat: 16.402411971745366, lng: 120.59564913037579 };
+            const map = new google.maps.Map(document.getElementById("googleMap"), {
+                zoom: 15,
+                center: uluru,
+            });
+            const marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+            });
+        }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIS0h8y8o-AeSf6d1hOgNiDbgb5Uj4Vko&callback=myMap&libraries=&v=weekly"
+        async></script>*@
+    
+}
+
