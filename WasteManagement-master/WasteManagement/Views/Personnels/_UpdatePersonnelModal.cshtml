@@ -1,0 +1,69 @@
+﻿@model WasteManagement.Models.Personnels
+
+<div class="modal fade" id="UpdatePersonnelModal" tabindex="-1" role="dialog" aria-labelledby="UpdatePersonnelModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white" id="exampleModalLongTitle">Update Personnel</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Update", "Personnels", FormMethod.Post, new
+                {
+                    @class = "needs-validation",
+                    novalidate = string.Empty
+                }))
+                {
+                    @Html.HiddenFor(p => p.PersonnelID, new { id = "updatePersonnelId" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(p => p.FirstName)
+                        @Html.TextBoxFor(p => p.FirstName, new
+                        {
+                            @class = "form-control",
+                            id = "updateFirstName",
+                            placeholder = "First Name",
+                            required = string.Empty
+                        })
+                        <div class="invalid-feedback">
+                            Please enter first name.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(p => p.LastName)
+                        @Html.TextBoxFor(p => p.LastName, new
+                        {
+                            @class = "form-control",
+                            id = "updateLastName",
+                            placeholder = "Last Name",
+                            required = string.Empty
+                        })
+                        <div class="invalid-feedback">
+                            Please enter last name.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(p => p.ContactNumber)
+                        @Html.TextBoxFor(p => p.ContactNumber, new
+                        {
+                            @class = "form-control",
+                            id = "updateContactNumber",
+                            placeholder = "Contact Number",
+                            required = string.Empty
+                        })
+                        <div class="invalid-feedback">
+                            Please enter last name.
+                        </div>
+                    </div>
+
+                    <button class="btn btn-info btn-block px-5 my-4" type="submit">Update</button>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-﻿
+﻿@model WasteManagement.Models.PersonnelsIndexViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Admin.cshtml";
@@ -11,137 +11,63 @@
 
 <div class="row">
 
-    <div class="col-12">
-        <div class="card mb-4">
-            <div class="card-header">
-                <div class="d-flex jus">
-                    <span class="d-inline-block">
-                        <i class="fas fa-table mr-1"></i>Lists Of Personnels
-                    </span>
-                    <button class="btn btn-primary ml-auto" style="padding: 0.2rem;width: 5rem"
-                            data-toggle="modal" data-target="#AddPersonnelModal">Add</button>
-                </div>
+    @Html.Partial("~/Views/Personnels/_PersonnelsTable.cshtml", Model.Personnels)
+    @Html.Partial("~/Views/Personnels/_AddPersonnelModal.cshtml", Model.Personnel)
+    @Html.Partial("~/Views/Personnels/_UpdatePersonnelModal.cshtml", Model.Personnel)
+    @Html.Partial("~/Views/Personnels/_DeletePersonnelModal.cshtml", Model.Personnel)
 
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Contact</th>
-                                <th>Location</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @*<tr>
-                                <td style="line-height:2rem">Tiger Nixon</td>
-                                <td style="line-height:2rem">System Architect</td>
-                                <td style="line-height:2rem">Edinburgh</td>
-                                <td>
-                                    <button class="btn  btn-info" style="padding: 0.2rem;width: 5rem">Update</button>
-                                    <button class="btn btn-danger" style="padding: 0.2rem;width: 5rem">Delete</button>
-                                </td>
-                            </tr>*@
+</div>
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+    });
+</script>
 
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
 
-    @*Add Personnel Modal*@
-    <div class="modal fade" id="AddPersonnelModal" tabindex="-1" role="dialog" aria-labelledby="AddPersonnelModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-primary">
-                    <h5 class="modal-title text-white" id="exampleModalLongTitle">Add Personnel</h5>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="needs-validation" novalidate action="@Url.Action("Index", "Dashboard")">
-                        <div class="form-group">
-                            <label for="validationCustom01">First name</label>
-                            <input type="text" class="form-control" id="validationCustom01" placeholder="First name" required>
-                            <div class="invalid-feedback">
-                                Please enter first name.
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="validationCustom02">Last name</label>
-                            <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" required>
-                            <div class="invalid-feedback">
-                                Please enter last name.
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="validationCustomUsername">Contact Number</label>
-                            <div class="input-group">
+<script>
+    function updatedata(str) {
+        const arr = str.split("_");
 
-                                <input type="text" class="form-control" id="validationCustomUsername" placeholder="Contact Number" aria-describedby="inputGroupPrepend" required>
-                                <div class="invalid-feedback">
-                                    Please enter contact number
-                                </div>
-                            </div>
-                        </div>
+        document.getElementById("updatePersonnelId").value = document.getElementById("pi_" + arr[1]).innerText;
+        document.getElementById("updateFirstName").value = document.getElementById("fn_" + arr[1]).innerText;
+        document.getElementById("updateLastName").value = document.getElementById("ln_" + arr[1]).innerText;
+        document.getElementById("updateContactNumber").value = document.getElementById("cn_" + arr[1]).innerText;
 
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Assigned Location</label>
-                            <select class="form-control" id="exampleFormControlSelect1" required>
-                                <option></option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                Please select location
-                            </div>
-                        </div>
+        $('#UpdatePersonnelModal').modal('show');
+    }
 
-                        <button class="btn btn-primary btn-block px-5 my-4" type="submit">Submit</button>
-                    </form>
+    function deletedata(str) {
+        const arr = str.split("_");
 
-                    <script>
-                        // Example starter JavaScript for disabling form submissions if there are invalid fields
-                        (function () {
-                            'use strict';
-                            window.addEventListener('load', function () {
-                                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                                var forms = document.getElementsByClassName('needs-validation');
-                                // Loop over them and prevent submission
-                                var validation = Array.prototype.filter.call(forms, function (form) {
-                                    form.addEventListener('submit', function (event) {
-                                        if (form.checkValidity() === false) {
-                                            event.preventDefault();
-                                            event.stopPropagation();
-                                        }
-                                        form.classList.add('was-validated');
-                                    }, false);
-                                });
-                            }, false);
-                        })();
-                    </script>
-                </div>
-                @*<div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>*@
-            </div>
-        </div>
-    </div>
+        document.getElementById("deletePersonnelId").value = arr[1];
+        document.getElementById("deleteFirstName").innerText = document.getElementById("fn_" + arr[1]).innerText;
+        document.getElementById("deleteLastName").innerText = document.getElementById("ln_" + arr[1]).innerText;
+        document.getElementById("deleteContactNumber").innerText = document.getElementById("cn_" + arr[1]).innerText;
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function () {
-            $('#dataTable').DataTable();
-        });
-    </script>
+        $('#DeletePersonnelModal').modal('show');
+    }
+</script>

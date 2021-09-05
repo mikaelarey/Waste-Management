@@ -1,59 +1,191 @@
 ﻿@model IEnumerable<WasteManagement.Models.tbl_Bin>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Admin.cshtml";
-}
+@{ ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/_Admin.cshtml"; }
+
+<h1 class="mt-4">Bins</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Bins</li>
+</ol>
 
 
 
-<div class="card">
-    <div class="card-header">
-        <h4>Bin</h4>
+<div class="row">
+
+    <div>
+        <button>Create Bin</button>
     </div>
-    <div class="card-body">
-        <p>
-            @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-success" })
-        </p>
-        <table class="table table-hover table-striped">
-            <tr class="table-primary">
-                <th>
-                    @Html.DisplayNameFor(model => model.BinID)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CurrentCapacity)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Status)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Location)
-                </th>
-                <th></th>
-            </tr>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BinID)
-                    </td>
-                    <td>
-                        @string.Format("{0:p2}", item.CurrentCapacity)
-                    </td>
-                    <td>
-                        <i class="fs-5 bi-trash @item.Status"></i>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Location)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-sm btn-secondary" })
-                    </td>
-                </tr>
-            }
+    <div id="accordion" class="w-100 p-3">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Collapsible Group Item #1
+                    </button>
+                </h5>
+            </div>
 
-        </table>
-
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <table class="table table-striped border shadow">
+                                <thead class="bg-info">
+                                    <tr class="text-white text-center">
+                                        <th scope="col">Bin ID</th>
+                                        <th scope="col">Personnel</th>
+                                        <th scope="col">Contact</th>
+                                        <th scope="col">Waste Type</th>
+                                        <th scope="col">Capacity</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>123456789</td>
+                                        <td>Otto</td>
+                                        <td>mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>123456789</td>
+                                        <td>Thornton</td>
+                                        <td>fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>123456789</td>
+                                        <td>the Bird</td>
+                                        <td>twitter</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>123456789</td>
+                                        <td>the Bird</td>
+                                        <td>twitter</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="card mb-4  shadow">
+                                <div class="card-header"><i class="fas fa-chart-bar mr-1"></i>Bins Current Status</div>
+                                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class=" mb-4">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <img src="~/Content/Img/cover.jpg" class="w-100" />
+                                    </div>
+                                    <div class="col-6">
+                                        <h5>Details</h5>
+                                        <p>Name of location<p>
+                                        <p>Personnel, Personnel, Personnel, Personne</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+
+@*Bar Chart*@
+<script>
+    // Set new default font family and font color to mimic Bootstrap's default styling
+    Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#292b2c';
+
+    // Bar Chart Example
+    var ctx = document.getElementById("myBarChart");
+    var myLineChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                "Burnham Park"
+            ],
+            datasets: [
+                {
+                    label: "Biodegradable Waste",
+                    backgroundColor: "rgba(2,117,216,1)",
+                    borderColor: "rgba(2,117,216,1)",
+                    data: [42],
+                },
+                {
+                    label: "Hazardous waste",
+                    backgroundColor: "rgba(139, 91, 201)",
+                    borderColor: "rgba(139, 91, 201)",
+                    data: [25],
+                },
+                {
+                    label: "Recycable waste",
+                    backgroundColor: "rgba(90, 184, 196)",
+                    borderColor: "rgba(90, 184, 196)",
+                    data: [12],
+                },
+                {
+                    label: "General Waste",
+                    backgroundColor: "rgba(235, 155, 52)",
+                    borderColor: "rgba(235, 155, 52)",
+                    data: [45],
+                }],
+        },
+        options: {
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'month'
+                    },
+                    gridLines: {
+                        display: true
+                    },
+                    ticks: {
+                        maxTicksLimit: 6
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 100,
+                        maxTicksLimit: 5
+                    },
+                    gridLines: {
+                        display: true
+                    }
+                }],
+            },
+            legend: {
+                display: true
+            }
+        }
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

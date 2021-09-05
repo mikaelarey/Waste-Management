@@ -125,6 +125,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BusinessLogic\Personnels.cs" />
     <Compile Include="Classes\dbcontrol.cs" />
     <Compile Include="Controllers\BinsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
@@ -133,6 +134,8 @@
     <Compile Include="Controllers\RemarksController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\TrasuraLoginController.cs" />
+    <Compile Include="Database\GeneralFunctions.cs" />
+    <Compile Include="Database\Personnels.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -250,6 +253,10 @@
     <Content Include="Views\Shared\_Admin\Header.cshtml" />
     <Content Include="Views\Shared\_Admin\SideNav.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Personnels\_PersonnelsTable.cshtml" />
+    <Content Include="Views\Personnels\_AddPersonnelModal.cshtml" />
+    <Content Include="Views\Personnels\_UpdatePersonnelModal.cshtml" />
+    <Content Include="Views\Personnels\_DeletePersonnelModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

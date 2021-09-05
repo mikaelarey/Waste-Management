@@ -1,0 +1,67 @@
+﻿@model WasteManagement.Models.Personnels
+
+<div class="modal fade" id="AddPersonnelModal" tabindex="-1" role="dialog" aria-labelledby="AddPersonnelModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLongTitle">Add Personnel</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Create", "Personnels", FormMethod.Post, new 
+                { 
+                    @class = "needs-validation", 
+                    novalidate = string.Empty 
+                }))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(p => p.FirstName)
+                        @Html.TextBoxFor(p => p.FirstName, new
+                        {
+                            @class = "form-control",
+                            id = "addFirstName",
+                            placeholder = "First Name",
+                            required = string.Empty
+                        })
+                        <div class="invalid-feedback">
+                            Please enter first name.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(p => p.LastName)
+                        @Html.TextBoxFor(p => p.LastName, new
+                        {
+                            @class = "form-control",
+                            id = "addLastName",
+                            placeholder = "Last Name",
+                            required = string.Empty
+                        })
+                        <div class="invalid-feedback">
+                            Please enter last name.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(p => p.ContactNumber)
+                        @Html.TextBoxFor(p => p.ContactNumber, new
+                        {
+                            @class = "form-control",
+                            id = "addContactNumber",
+                            placeholder = "Contact Number",
+                            required = string.Empty
+                        })
+                        <div class="invalid-feedback">
+                            Please enter last name.
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-block px-5 my-4" type="submit">Add</button>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
