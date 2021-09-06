@@ -1,25 +1,120 @@
-﻿
-@{
+﻿@model IEnumerable<WasteManagement.Models.Locations>
+
+@{ 
     ViewBag.Title = "Home";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
 
-<div class="row g-2">
-    <div class="col-md-8">
-        <div class="card">
-            <div class="card-header">
-                <h4><i class="bi-chat-left-text"></i>&nbsp;General Waste Baguio City Waste Management</h4>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="bi-chat-left-text"></i>&nbsp;General Waste Baguio City Waste Management</h4>
+                </div>
+                <div class="card-body p-5">
+                    <img src="~/Content/Img/homegif2.gif" width="160" class="float-lg-end" alt="Alternate Text" />
+                    <div class="card-title"><b>NOTE:</b></div>
+                    <p class="card-text">The City Government strictly implements the NO-SEGREGATION-NO-COLLECTION POLICY on Waste Collection in all areas of the city.</p>
+                    <p class="card-text">Unpacked or scattered residual wastes will not be collected and Barangays Officials should see to it that strict compliance be observed to assure collection. It is also strictly prohibited for residential barangays to bring or dump their generated biodegradable and residuals to CBD, Market, National Roads and highways where collection is being done on daily basis.</p>
+                    <p class="card-text">If you think you complied, please proceed with the submission of your request.<br />Thank you!</p>
+                </div>
             </div>
-            <div class="card-body p-5">
-                <img src="~/Content/Img/homegif2.gif" width="160" class="float-lg-end" alt="Alternate Text" />
-                <div class="card-title"><b>NOTE:</b></div>
-                <p class="card-text">The City Government strictly implements the NO-SEGREGATION-NO-COLLECTION POLICY on Waste Collection in all areas of the city.</p> 
-                <p class="card-text">Unpacked or scattered residual wastes will not be collected and Barangays Officials should see to it that strict compliance be observed to assure collection. It is also strictly prohibited for residential barangays to bring or dump their generated biodegradable and residuals to CBD, Market, National Roads and highways where collection is being done on daily basis.</p>
-                <p class="card-text">If you think you complied, please proceed with the submission of your request.<br />Thank you!</p>
+        </div>
+
+        <div class="col-12 mt-2">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-exclamation"></i>&nbsp;Notifications</h4>
+                </div>
+                <div class="card-body p-0">
+                    <div id="accordion" class="w-100 p-3">
+                        <div class="card">
+
+                            @foreach (var item in Model)
+                            {
+                                @Html.Partial("~/Views/Bins/_BinWidgets.cshtml", item)
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <img src="~/Content/Img/homegif.gif" alt="Alternate Text" />
-    </div>
 </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+
+@*Bar Chart*@
+<script>
+    // Set new default font family and font color to mimic Bootstrap's default styling
+    Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#292b2c';
+
+    // Bar Chart Example
+    var ctx = document.getElementById("myBarChart");
+    var myLineChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                "Burnham Park"
+            ],
+            datasets: [
+                {
+                    label: "Biodegradable Waste",
+                    backgroundColor: "rgba(2,117,216,1)",
+                    borderColor: "rgba(2,117,216,1)",
+                    data: [42],
+                },
+                {
+                    label: "Hazardous waste",
+                    backgroundColor: "rgba(139, 91, 201)",
+                    borderColor: "rgba(139, 91, 201)",
+                    data: [25],
+                },
+                {
+                    label: "Recycable waste",
+                    backgroundColor: "rgba(90, 184, 196)",
+                    borderColor: "rgba(90, 184, 196)",
+                    data: [12],
+                },
+                {
+                    label: "General Waste",
+                    backgroundColor: "rgba(235, 155, 52)",
+                    borderColor: "rgba(235, 155, 52)",
+                    data: [45],
+                }],
+        },
+        options: {
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'month'
+                    },
+                    gridLines: {
+                        display: true
+                    },
+                    ticks: {
+                        maxTicksLimit: 6
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 100,
+                        maxTicksLimit: 5
+                    },
+                    gridLines: {
+                        display: true
+                    }
+                }],
+            },
+            legend: {
+                display: true
+            }
+        }
+    });</script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>

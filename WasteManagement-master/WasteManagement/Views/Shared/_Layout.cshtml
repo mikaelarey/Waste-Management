@@ -51,17 +51,14 @@
                         var user = new WasteManagement.Models.tbl_user().Findtbl_user(Convert.ToInt32(Session["ID"]));
                         if (user.isAdmin)
                         {
-                            <a class="nav-link" href="@Url.Action("Dashboard", "Schedule")">Dashboard</a>
-                        }
+        <a class="nav-link" href="@Url.Action("Index", "Dashboard")">Dashboard</a> }
                         else
                         {
-                            <a class="nav-link" href="@Url.Action("Report", "Remarks")">Dashboard</a>
-                        }
+        <a class="nav-link" href="@Url.Action("Index", "Dashboard")">Dashboard</a> }
                     }
                     else
                     {
-                        <a class="nav-link" hidden href="@Url.Action("Login", "TrasuraLogin")">Login</a>
-                    }
+        <a class="nav-link" hidden href="@Url.Action("Login", "TrasuraLogin")">Login</a>}
                 </div>
             </div>
         </div>
@@ -69,9 +66,12 @@
     <div class="container">
         @RenderBody()
     </div>
- 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -8,6 +8,15 @@ namespace WasteManagement.Controllers
 {
     public class HomeController : Controller
     {
+        BusinessLogic.Locations _l;
+
+
+        public HomeController()
+        {
+            _l = new BusinessLogic.Locations();
+        }
+
+
         [ActionName("Schedule")]
         public ActionResult Index()
         {
@@ -18,7 +27,7 @@ namespace WasteManagement.Controllers
         public ActionResult Home()
         {
             ViewBag.datenow = $"{DateTime.Now:yyyy-MM-dd}";
-            return View();
+            return View(_l.GetAllLocations());
         }
 
         public ActionResult AboutUs()

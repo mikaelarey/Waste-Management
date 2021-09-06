@@ -1,0 +1,44 @@
+﻿@model WasteManagement.Models.LocationsIndexViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h1 class="mt-4">Locations</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Locations</li>
+</ol>
+
+<div class="row">
+    @Html.Partial("~/Views/Locations/_LocationsTable.cshtml", Model.Locations)
+</div>
+
+<div class="modal fade" id="CommingSoon" tabindex="-1" role="dialog" aria-labelledby="DeletePersonnelModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title text-white" id="exampleModalLongTitle">Comming Soon</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 class="text-center">COMMING SOON!!!</h3>
+                <p class="text-center">This feature is not working yet</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+    });
+</script>
+
+
+

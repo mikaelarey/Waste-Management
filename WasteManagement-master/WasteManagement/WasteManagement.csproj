@@ -125,20 +125,24 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BusinessLogic\Locations.cs" />
     <Compile Include="BusinessLogic\Personnels.cs" />
     <Compile Include="Classes\dbcontrol.cs" />
     <Compile Include="Controllers\BinsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\PersonnelsController.cs" />
     <Compile Include="Controllers\RemarksController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\TrasuraLoginController.cs" />
     <Compile Include="Database\GeneralFunctions.cs" />
+    <Compile Include="Database\Locations.cs" />
     <Compile Include="Database\Personnels.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Locations.cs" />
     <Compile Include="Models\Personnels.cs" />
     <Compile Include="Models\tbl_Bin.cs" />
     <Compile Include="Models\tbl_Remarks.cs" />
@@ -257,6 +261,9 @@
     <Content Include="Views\Personnels\_AddPersonnelModal.cshtml" />
     <Content Include="Views\Personnels\_UpdatePersonnelModal.cshtml" />
     <Content Include="Views\Personnels\_DeletePersonnelModal.cshtml" />
+    <Content Include="Views\Locations\_LocationsTable.cshtml" />
+    <Content Include="Views\Locations\Index.cshtml" />
+    <Content Include="Views\Bins\_BinWidgets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

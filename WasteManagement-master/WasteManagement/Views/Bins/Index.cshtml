@@ -1,7 +1,7 @@
-﻿@model IEnumerable<WasteManagement.Models.tbl_Bin>
+﻿@model IEnumerable<WasteManagement.Models.Locations>
 
 @{ ViewBag.Title = "Index";
-                Layout = "~/Views/Shared/_Admin.cshtml"; }
+    Layout = "~/Views/Shared/_Admin.cshtml"; }
 
 <h1 class="mt-4">Bins</h1>
 <ol class="breadcrumb mb-4">
@@ -9,91 +9,36 @@
 </ol>
 
 
-
 <div class="row">
 
-    <div>
-        <button>Create Bin</button>
+    <div class="p-3">
+        <button class="btn btn-primary px-5" data-toggle="modal" data-target="#CommingSoon">Create Bin</button>
     </div>
 
     <div id="accordion" class="w-100 p-3">
         <div class="card">
-            <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Collapsible Group Item #1
-                    </button>
-                </h5>
-            </div>
 
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 mb-4">
-                            <table class="table table-striped border shadow">
-                                <thead class="bg-info">
-                                    <tr class="text-white text-center">
-                                        <th scope="col">Bin ID</th>
-                                        <th scope="col">Personnel</th>
-                                        <th scope="col">Contact</th>
-                                        <th scope="col">Waste Type</th>
-                                        <th scope="col">Capacity</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-center">
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>123456789</td>
-                                        <td>Otto</td>
-                                        <td>mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>123456789</td>
-                                        <td>Thornton</td>
-                                        <td>fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>123456789</td>
-                                        <td>the Bird</td>
-                                        <td>twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>123456789</td>
-                                        <td>the Bird</td>
-                                        <td>twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <div class="card mb-4  shadow">
-                                <div class="card-header"><i class="fas fa-chart-bar mr-1"></i>Bins Current Status</div>
-                                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <div class=" mb-4">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <img src="~/Content/Img/cover.jpg" class="w-100" />
-                                    </div>
-                                    <div class="col-6">
-                                        <h5>Details</h5>
-                                        <p>Name of location<p>
-                                        <p>Personnel, Personnel, Personnel, Personne</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            @foreach (var item in Model)
+            {
+                @Html.Partial("~/Views/Bins/_BinWidgets.cshtml", item)
+            }
+            
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="CommingSoon" tabindex="-1" role="dialog" aria-labelledby="DeletePersonnelModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title text-white" id="exampleModalLongTitle">Comming Soon</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 class="text-center">COMMING SOON!!!</h3>
+                <p class="text-center">This feature is not working yet</p>
             </div>
         </div>
     </div>

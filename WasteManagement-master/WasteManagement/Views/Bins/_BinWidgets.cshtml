@@ -1,0 +1,71 @@
+﻿@model WasteManagement.Models.Locations
+
+@{ 
+    var headingId = "heading_" + Model.LocationId;
+    var collapseId = "collapse_" + Model.LocationId;
+
+}
+
+<div class="card-header" id="@headingId">
+    <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#@collapseId" aria-expanded="true" aria-controls="@collapseId">
+            @Model.LocationName
+        </button>
+    </h5>
+</div>
+
+<div id="@collapseId" class="collapse" aria-labelledby="@headingId" data-parent="#accordion">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 mb-4 col-lg-6">
+                <table class="table table-striped border shadow">
+                    <thead class="bg-info">
+                        <tr class="text-white text-center">
+                            <th scope="col">Bin ID</th>
+                            <th scope="col">Personnel</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">Waste Type</th>
+                            <th scope="col">Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>123456789</td>
+                            <td>Otto</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>123456789</td>
+                            <td>Thornton</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>123456789</td>
+                            <td>the Bird</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>123456789</td>
+                            <td>the Bird</td>
+                            <td>100%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card mb-4  shadow">
+                    <div class="card-header"><i class="fas fa-chart-bar mr-1"></i>Bins Current Status</div>
+                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
